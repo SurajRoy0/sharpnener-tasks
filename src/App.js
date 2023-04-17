@@ -7,11 +7,11 @@ import Wrapper from './components/Helper/Wrapper';
 function App() {
   const [usersList, setUsersList] = useState([]);
 
-  const addUserHandler = (uName, uAge) => {
+  const addUserHandler = (uName,uCollege, uAge) => {
     setUsersList((prevUsersList) => {
       return [
         ...prevUsersList,
-        { name: uName, age: uAge, id: Math.random().toString() },
+        { name: uName, college: uCollege, age: uAge, id: Math.random().toString() },
       ];
     });
   };

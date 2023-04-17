@@ -8,12 +8,13 @@ import Wrapper from '../Helper/Wrapper';
 
 const AddUser = (props) => {
   const [enteredUsername, setEnteredUsername] = useState('');
+  const [enteredCollegeName, setEnteredCollegeName] = useState('');
   const [enteredAge, setEnteredAge] = useState('');
   const [error, setError] = useState();
 
   const addUserHandler = (event) => {
     event.preventDefault();
-    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0 || enteredCollegeName.trim().length === 0 ) {
       setError({
         title: 'Invalid input',
         message: 'Please enter a valid name and age (non-empty values).',
@@ -27,13 +28,18 @@ const AddUser = (props) => {
       });
       return;
     }
-    props.onAddUser(enteredUsername, enteredAge);
+    props.onAddUser(enteredUsername, enteredCollegeName,enteredAge);
     setEnteredUsername('');
+    setEnteredCollegeName('');
     setEnteredAge('');
   };
 
   const usernameChangeHandler = (event) => {
     setEnteredUsername(event.target.value);
+  };
+
+  const collegeNameChangeHandler = (event) => {
+    setEnteredCollegeName(event.target.value);
   };
 
   const ageChangeHandler = (event) => {
@@ -61,6 +67,13 @@ const AddUser = (props) => {
             type="text"
             value={enteredUsername}
             onChange={usernameChangeHandler}
+          />
+          <label htmlFor="age">College Name</label>
+          <input
+            id="clgeName"
+            type="text"
+            value={enteredCollegeName}
+            onChange={collegeNameChangeHandler}
           />
           <label htmlFor="age">Age (Years)</label>
           <input
